@@ -6,16 +6,14 @@ async function pros_cons2({ slideTitle, slideDesc, myAccountInfo, userEmail, pre
     try {
         var prompt = `Craft a JSON for a presentation slide object with ${slideTitle} and slide description: ${slideDesc} should have:
           a) 'title' – a short, catchy headline summarizing the slide's content within 3-4 words.
-  
-          b) 'number1' – give a number series wise and a single digit number.
-          c) 'number2' – give a number series wise and a single digit number.
-          d) 'number3' – give a number series wise and a single digit number.
-          e) 'number4' – give a number series wise and a single digit number.
-  
-          f) 'description1' – string of 4 lines covering specific information or examples relevant to the slide's topic. description1 should me more than 12 words and less than 30 words.
-          g) 'description2' – string of 4 lines covering specific information or examples relevant to the slide's topic. description2 should me more than 12 words and less than 30 words.
-          h) 'description3' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.
-          i) 'description4' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.`
+          
+          b) 'subtitle1' – a short, catchy subtitle in 1 words summarizing the slide's content.
+          c) 'subtitle2' – a short, catchy subtitle in 1 words summarizing the slide's content.
+          d) 'subtitle3' – a short, catchy subtitle in 1 words summarizing the slide's content.
+
+          e) 'description1' – string of 4 lines covering specific information or examples relevant to the slide's topic. description1 should me more than 12 words and less than 30 words.
+          f) 'description2' – string of 4 lines covering specific information or examples relevant to the slide's topic. description2 should me more than 12 words and less than 30 words.
+          g) 'description3' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.`
 
         const payload = createAskAIPayload(prompt, myAccountInfo['plan']);
         const options = createAskAIOptions(payload);
@@ -42,36 +40,30 @@ async function pros_cons2({ slideTitle, slideDesc, myAccountInfo, userEmail, pre
             const parsedJson = JSON.parse(result);
             Logger.log("The JSON is valid.");
             let presentationTitle = parsedJson.title;
-            let number1 = parsedJson.number1;
-            let number2 = parsedJson.number2;
-            let number3 = parsedJson.number3;
-            let number4 = parsedJson.number4;
+            let subtitle1 = parsedJson.subtitle1;
+            let subtitle2 = parsedJson.subtitle2;
+            let subtitle3 = parsedJson.subtitle3;
             let description1 = parsedJson.description1;
             let description2 = parsedJson.description2;
             let description3 = parsedJson.description3;
-            let description4 = parsedJson.description4;
 
             if (presentationTitle === undefined || presentationTitle === "" ||
-                number1 === undefined || number1 === "" ||
-                number2 === undefined || number2 === "" ||
-                number3 === undefined || number3 === "" ||
-                number4 === undefined || number4 === "" ||
+                subtitle1 === undefined || subtitle1 === "" ||
+                subtitle2 === undefined || subtitle2 === "" ||
+                subtitle3 === undefined || subtitle3 === "" ||
                 description1 === undefined || description1 === "" ||
                 description2 === undefined || description2 === "" ||
-                description3 === undefined || description3 === "" ||
-                description4 === undefined || description4 === "") {
+                description3 === undefined || description3 === "") {
                 return;
             }
             var customJSON = {
                 "title": presentationTitle ? presentationTitle : slideTitle,
-                "number1": number1 ? number1 : "",
-                "number2": number2 ? number2 : "",
-                "number3": number3 ? number3 : "",
-                "number4": number4 ? number4 : "",
+                "subtitle1": subtitle1 ? subtitle1 : "",
+                "subtitle2": subtitle2 ? subtitle2 : "",
+                "subtitle3": subtitle3 ? subtitle3 : "",
                 "description1": description1 ? description1 : "",
                 "description2": description2 ? description2 : "",
-                "description3": description3 ? description3 : "",
-                "description4": description4 ? description4 : ""
+                "description3": description3 ? description3 : ""
             }
             // Logger.log(result: ${result});
             // Translate the result if not in English
@@ -157,121 +149,88 @@ async function pros_cons2_appScript({ result, firstSlideNumberToStart, wikipedia
         title2.setLeft(45)
         title2.setWidth(650)
 
-        const circle1 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle1.setWidth(25)
-        circle1.setHeight(25)
-        circle1.setTop(100)
-        circle1.setLeft(55)
-        circle1.getFill().setSolidFill('#ffffff')
-        circle1.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle1.getBorder().setWeight(2);
+        const shape1 = slide.insertShape(SlidesApp.ShapeType.RECTANGLE)
+        shape1.setWidth(600)
+        shape1.setHeight(270)
+        shape1.setTop(80)
+        shape1.setLeft(50)
+        shape1.getBorder().setDashStyle(SlidesApp.DashStyle.DOT);
+        shape1.getBorder().setWeight(1)
+        shape1.getFill().setSolidFill('#ffffff')
+
+        const dotvertLine1 = slide.insertLine(SlidesApp.LineCategory.STRAIGHT, 2.5, 0, 2.5, 270)
+        dotvertLine1.setDashStyle(SlidesApp.DashStyle.DOT)
+        dotvertLine1.setLeft(200)
+        dotvertLine1.setTop(80)
+
+        const dothoriline1 = slide.insertLine(SlidesApp.LineCategory.STRAIGHT, 0, 2.5, 600, 2.5)
+        dothoriline1.setDashStyle(SlidesApp.DashStyle.DOT)
+        dothoriline1.setLeft(50)
+        dothoriline1.setTop(165)
 
 
-        const number1 = slide.insertTextBox(result.number1)
-        const number1Style = number1.getText().getTextStyle()
-        number1Style.setFontSize(14)
-        number1Style.setFontFamily('Lato')
-        number1Style.setForegroundColor('#2d11ee')
-        number1Style.setBold(true)
-        number1.setTop(97)
-        number1.setLeft(56)
-        number1.setWidth(20)
+        const dothoriline2 = slide.insertLine(SlidesApp.LineCategory.STRAIGHT, 0, 2.5, 600, 2.5)
+        dothoriline2.setDashStyle(SlidesApp.DashStyle.DOT)
+        dothoriline2.setLeft(50)
+        dothoriline2.setTop(255)
 
-        const circle2 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle2.setWidth(25)
-        circle2.setHeight(25)
-        circle2.setTop(170)
-        circle2.setLeft(55)
-        circle2.getFill().setSolidFill('#ffffff')
-        circle2.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle2.getBorder().setWeight(2);
+        const subtitle = slide.insertTextBox(result.subtitle1)
+        const subStyle = subtitle.getText().getTextStyle()
+        subtitle.setTop(110)
+        subtitle.setLeft(60)
+        subtitle.setWidth(250)
+        subStyle.setForegroundColor('#000000')
+        subStyle.setFontSize(14)
+        subStyle.setFontFamily('Lato')
+        subStyle.setBold(true)
 
+        const subtitle2 = slide.insertTextBox(result.subtitle2)
+        const subStyle2 = subtitle2.getText().getTextStyle()
+        subtitle2.setTop(190)
+        subtitle2.setLeft(60)
+        subtitle2.setWidth(120)
+        subStyle2.setForegroundColor('#000000')
+        subStyle2.setFontSize(14)
+        subStyle2.setFontFamily('Lato')
+        subStyle2.setBold(true)
 
-        const number2 = slide.insertTextBox(result.number2)
-        const number2Style = number2.getText().getTextStyle()
-        number2Style.setFontSize(14)
-        number2Style.setFontFamily('Lato')
-        number2Style.setForegroundColor('#2d11ee')
-        number2Style.setBold(true)
-        number2.setTop(167)
-        number2.setLeft(56)
-        number2.setWidth(20)
+        const subtitle3 = slide.insertTextBox(result.subtitle3)
+        const subStyle3 = subtitle3.getText().getTextStyle()
+        subtitle3.setTop(270)
+        subtitle3.setLeft(60)
+        subtitle3.setWidth(100)
+        subStyle3.setForegroundColor('#000000')
+        subStyle3.setFontSize(14)
+        subStyle3.setFontFamily('Lato')
+        subStyle3.setBold(true)
 
-        const circle3 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle3.setWidth(25)
-        circle3.setHeight(25)
-        circle3.setTop(250)
-        circle3.setLeft(55)
-        circle3.getFill().setSolidFill('#ffffff')
-        circle3.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle3.getBorder().setWeight(2);
-
-
-        const number3 = slide.insertTextBox(result.number3)
-        const number3Style = number3.getText().getTextStyle()
-        number3Style.setFontSize(14)
-        number3Style.setFontFamily('Lato')
-        number3Style.setForegroundColor('#2d11ee')
-        number3Style.setBold(true)
-        number3.setTop(247)
-        number3.setLeft(56)
-        number3.setWidth(20)
-
-        const circle4 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle4.setWidth(25)
-        circle4.setHeight(25)
-        circle4.setTop(330)
-        circle4.setLeft(55)
-        circle4.getFill().setSolidFill('#ffffff')
-        circle4.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle4.getBorder().setWeight(2);
-
-
-        const number4 = slide.insertTextBox(result.number4)
-        const number4Style = number4.getText().getTextStyle()
-        number4Style.setFontSize(14)
-        number4Style.setFontFamily('Lato')
-        number4Style.setForegroundColor('#2d11ee')
-        number4Style.setBold(true)
-        number4.setTop(327)
-        number4.setLeft(56)
-        number4.setWidth(20)
 
         const description = slide.insertTextBox(result.description1)
         const descStyle = description.getText().getTextStyle()
         description.setTop(90)
-        description.setLeft(110)
-        description.setWidth(450)
+        description.setLeft(250)
+        description.setWidth(380)
         descStyle.setForegroundColor('#000000')
         descStyle.setFontSize(11)
         descStyle.setFontFamily('Lato')
 
         const description2 = slide.insertTextBox(result.description2)
         const descStyle2 = description2.getText().getTextStyle()
-        description2.setTop(160)
-        description2.setLeft(110)
-        description2.setWidth(450)
+        description2.setTop(180)
+        description2.setLeft(250)
+        description2.setWidth(380)
         descStyle2.setForegroundColor('#000000')
         descStyle2.setFontSize(11)
         descStyle2.setFontFamily('Lato')
 
         const description3 = slide.insertTextBox(result.description3)
         const descStyle3 = description3.getText().getTextStyle()
-        description3.setTop(240)
-        description3.setLeft(110)
-        description3.setWidth(450)
+        description3.setTop(260)
+        description3.setLeft(250)
+        description3.setWidth(380)
         descStyle3.setForegroundColor('#000000')
         descStyle3.setFontSize(11)
         descStyle3.setFontFamily('Lato')
-
-        const description4 = slide.insertTextBox(result.description4)
-        const descStyle4 = description4.getText().getTextStyle()
-        description4.setTop(320)
-        description4.setLeft(110)
-        description4.setWidth(450)
-        descStyle4.setForegroundColor('#000000')
-        descStyle4.setFontSize(11)
-        descStyle4.setFontFamily('Lato')
 
         // *********************************************************************************************************
         // *********************************************************************************************************

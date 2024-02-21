@@ -7,12 +7,12 @@ async function pros_cons2({ slideTitle, slideDesc, myAccountInfo, userEmail, pre
         var prompt = `Craft a JSON for a presentation slide object with ${slideTitle} and slide description: ${slideDesc} should have:
           a) 'title' – a short, catchy headline summarizing the slide's content within 3-4 words.
   
-          b) 'number1' – give a number series wise.
-          c) 'number2' – give a number series wise.
-          d) 'number3' – give a number series wise.
-          e) 'number4' – give a number series wise.
-          f) 'number5' – give a number series wise.
-          g) 'number6' – give a number series wise.
+          b) 'number1' – give a number series wise and a single digit number.
+          c) 'number2' – give a number series wise and a single digit number.
+          d) 'number3' – give a number series wise and a single digit number.
+          e) 'number4' – give a number series wise and a single digit number.
+          f) 'number5' – give a number series wise and a single digit number.
+          g) 'number6' – give a number series wise and a single digit number.
   
           h) 'description1' – string of 4 lines covering specific information or examples relevant to the slide's topic. description1 should me more than 12 words and less than 30 words.
           i) 'description2' – string of 4 lines covering specific information or examples relevant to the slide's topic. description2 should me more than 12 words and less than 30 words.

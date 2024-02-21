@@ -7,15 +7,15 @@ async function pros_cons2({ slideTitle, slideDesc, myAccountInfo, userEmail, pre
         var prompt = `Craft a JSON for a presentation slide object with ${slideTitle} and slide description: ${slideDesc} should have:
           a) 'title' – a short, catchy headline summarizing the slide's content within 3-4 words.
   
-          b) 'number1' – give a number series wise and a single digit number.
-          c) 'number2' – give a number series wise and a single digit number.
-          d) 'number3' – give a number series wise and a single digit number.
-          e) 'number4' – give a number series wise and a single digit number.
-  
+          b) 'number1' – give a number series wise.
+          c) 'number2' – give a number series wise.
+          d) 'number3' – give a number series wise.
+          e) 'number4' – give a number series wise.  
+
           f) 'description1' – string of 4 lines covering specific information or examples relevant to the slide's topic. description1 should me more than 12 words and less than 30 words.
           g) 'description2' – string of 4 lines covering specific information or examples relevant to the slide's topic. description2 should me more than 12 words and less than 30 words.
           h) 'description3' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.
-          i) 'description4' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.`
+          i) 'description3' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.`
 
         const payload = createAskAIPayload(prompt, myAccountInfo['plan']);
         const options = createAskAIOptions(payload);
@@ -147,131 +147,91 @@ async function pros_cons2_appScript({ result, firstSlideNumberToStart, wikipedia
         // *********************************************************************************************************
         // *********************************************************************************************************
 
-        const title2 = slide.insertTextBox(result.title)
-        const titleStyle2 = title2.getText().getTextStyle()
-        titleStyle2.setBold(true)
-        titleStyle2.setForegroundColor('#000000')
-        titleStyle2.setFontSize(24)
-        titleStyle2.setFontFamily('Lato')
-        title2.setTop(30)
-        title2.setLeft(45)
-        title2.setWidth(650)
-
-        const circle1 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle1.setWidth(25)
-        circle1.setHeight(25)
-        circle1.setTop(100)
-        circle1.setLeft(55)
-        circle1.getFill().setSolidFill('#ffffff')
-        circle1.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle1.getBorder().setWeight(2);
-
+        const title = slide.insertTextBox(result.title)
+        const titleStyle = title.getText().getTextStyle()
+        titleStyle.setFontSize(24)
+        titleStyle.setFontFamily('Lato')
+        titleStyle.setForegroundColor('#000000')
+        titleStyle.setBold(true)
+        title.setTop(40)
+        title.setLeft(30)
+        title.setWidth(350)
 
         const number1 = slide.insertTextBox(result.number1)
         const number1Style = number1.getText().getTextStyle()
-        number1Style.setFontSize(14)
+        number1Style.setFontSize(20)
         number1Style.setFontFamily('Lato')
         number1Style.setForegroundColor('#2d11ee')
         number1Style.setBold(true)
-        number1.setTop(97)
-        number1.setLeft(56)
-        number1.setWidth(20)
-
-        const circle2 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle2.setWidth(25)
-        circle2.setHeight(25)
-        circle2.setTop(170)
-        circle2.setLeft(55)
-        circle2.getFill().setSolidFill('#ffffff')
-        circle2.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle2.getBorder().setWeight(2);
-
+        number1.setTop(110)
+        number1.setLeft(50)
+        number1.setWidth(50)
 
         const number2 = slide.insertTextBox(result.number2)
         const number2Style = number2.getText().getTextStyle()
-        number2Style.setFontSize(14)
+        number2Style.setFontSize(20)
         number2Style.setFontFamily('Lato')
         number2Style.setForegroundColor('#2d11ee')
         number2Style.setBold(true)
-        number2.setTop(167)
-        number2.setLeft(56)
-        number2.setWidth(20)
-
-        const circle3 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle3.setWidth(25)
-        circle3.setHeight(25)
-        circle3.setTop(250)
-        circle3.setLeft(55)
-        circle3.getFill().setSolidFill('#ffffff')
-        circle3.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle3.getBorder().setWeight(2);
-
+        number2.setTop(110)
+        number2.setLeft(220)
+        number2.setWidth(50)
 
         const number3 = slide.insertTextBox(result.number3)
         const number3Style = number3.getText().getTextStyle()
-        number3Style.setFontSize(14)
+        number3Style.setFontSize(20)
         number3Style.setFontFamily('Lato')
         number3Style.setForegroundColor('#2d11ee')
         number3Style.setBold(true)
-        number3.setTop(247)
-        number3.setLeft(56)
-        number3.setWidth(20)
-
-        const circle4 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle4.setWidth(25)
-        circle4.setHeight(25)
-        circle4.setTop(330)
-        circle4.setLeft(55)
-        circle4.getFill().setSolidFill('#ffffff')
-        circle4.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle4.getBorder().setWeight(2);
-
+        number3.setTop(110)
+        number3.setLeft(395)
+        number3.setWidth(50)
 
         const number4 = slide.insertTextBox(result.number4)
         const number4Style = number4.getText().getTextStyle()
-        number4Style.setFontSize(14)
+        number4Style.setFontSize(20)
         number4Style.setFontFamily('Lato')
         number4Style.setForegroundColor('#2d11ee')
         number4Style.setBold(true)
-        number4.setTop(327)
-        number4.setLeft(56)
-        number4.setWidth(20)
+        number4.setTop(110)
+        number4.setLeft(555)
+        number4.setWidth(50)
 
-        const description = slide.insertTextBox(result.description1)
-        const descStyle = description.getText().getTextStyle()
-        description.setTop(90)
-        description.setLeft(110)
-        description.setWidth(450)
-        descStyle.setForegroundColor('#000000')
-        descStyle.setFontSize(11)
-        descStyle.setFontFamily('Lato')
+        const info1 = slide.insertTextBox(result.description1)
+        const info1Style = info1.getText().getTextStyle()
+        info1Style.setFontSize(11)
+        info1Style.setFontFamily('Lato')
+        info1Style.setForegroundColor('#000000')
+        info1.setTop(160)
+        info1.setLeft(45)
+        info1.setWidth(150)
 
-        const description2 = slide.insertTextBox(result.description2)
-        const descStyle2 = description2.getText().getTextStyle()
-        description2.setTop(160)
-        description2.setLeft(110)
-        description2.setWidth(450)
-        descStyle2.setForegroundColor('#000000')
-        descStyle2.setFontSize(11)
-        descStyle2.setFontFamily('Lato')
+        const info2 = slide.insertTextBox(result.description2)
+        const info2Style = info2.getText().getTextStyle()
+        info2Style.setFontSize(11)
+        info2Style.setFontFamily('Lato')
+        info2Style.setForegroundColor('#000000')
+        info2.setTop(160)
+        info2.setLeft(215)
+        info2.setWidth(150)
 
-        const description3 = slide.insertTextBox(result.description3)
-        const descStyle3 = description3.getText().getTextStyle()
-        description3.setTop(240)
-        description3.setLeft(110)
-        description3.setWidth(450)
-        descStyle3.setForegroundColor('#000000')
-        descStyle3.setFontSize(11)
-        descStyle3.setFontFamily('Lato')
+        const info3 = slide.insertTextBox(result.description3)
+        const info3Style = info3.getText().getTextStyle()
+        info3Style.setFontSize(11)
+        info3Style.setFontFamily('Lato')
+        info3Style.setForegroundColor('#000000')
+        info3.setTop(160)
+        info3.setLeft(385)
+        info3.setWidth(150)
 
-        const description4 = slide.insertTextBox(result.description4)
-        const descStyle4 = description4.getText().getTextStyle()
-        description4.setTop(320)
-        description4.setLeft(110)
-        description4.setWidth(450)
-        descStyle4.setForegroundColor('#000000')
-        descStyle4.setFontSize(11)
-        descStyle4.setFontFamily('Lato')
+        const info4 = slide.insertTextBox(result.description4)
+        const info4Style = info4.getText().getTextStyle()
+        info4Style.setFontSize(11)
+        info4Style.setFontFamily('Lato')
+        info4Style.setForegroundColor('#000000')
+        info4.setTop(160)
+        info4.setLeft(555)
+        info4.setWidth(150)
 
         // *********************************************************************************************************
         // *********************************************************************************************************

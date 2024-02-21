@@ -7,15 +7,13 @@ async function pros_cons2({ slideTitle, slideDesc, myAccountInfo, userEmail, pre
         var prompt = `Craft a JSON for a presentation slide object with ${slideTitle} and slide description: ${slideDesc} should have:
           a) 'title' – a short, catchy headline summarizing the slide's content within 3-4 words.
   
-          b) 'number1' – give a number series wise.
-          c) 'number2' – give a number series wise.
-          d) 'number3' – give a number series wise.
-          e) 'number4' – give a number series wise.
+          b) 'number1' – a single digit number.
+          c) 'number2' – a single digit number.
+          d) 'number3' – a single digit number.
   
-          f) 'description1' – string of 4 lines covering specific information or examples relevant to the slide's topic. description1 should me more than 12 words and less than 30 words.
-          g) 'description2' – string of 4 lines covering specific information or examples relevant to the slide's topic. description2 should me more than 12 words and less than 30 words.
-          h) 'description3' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.
-          i) 'description4' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.`
+          e) 'description1' – string of 4 lines covering specific information or examples relevant to the slide's topic. description1 should me more than 12 words and less than 30 words.
+          f) 'description2' – string of 4 lines covering specific information or examples relevant to the slide's topic. description2 should me more than 12 words and less than 30 words.
+          g) 'description3' – string of 4 lines covering specific information or examples relevant to the slide's topic. description3 should me more than 12 words and less than 30 words.`
 
         const payload = createAskAIPayload(prompt, myAccountInfo['plan']);
         const options = createAskAIOptions(payload);
@@ -45,21 +43,17 @@ async function pros_cons2({ slideTitle, slideDesc, myAccountInfo, userEmail, pre
             let number1 = parsedJson.number1;
             let number2 = parsedJson.number2;
             let number3 = parsedJson.number3;
-            let number4 = parsedJson.number4;
             let description1 = parsedJson.description1;
             let description2 = parsedJson.description2;
             let description3 = parsedJson.description3;
-            let description4 = parsedJson.description4;
 
             if (presentationTitle === undefined || presentationTitle === "" ||
                 number1 === undefined || number1 === "" ||
                 number2 === undefined || number2 === "" ||
                 number3 === undefined || number3 === "" ||
-                number4 === undefined || number4 === "" ||
                 description1 === undefined || description1 === "" ||
                 description2 === undefined || description2 === "" ||
-                description3 === undefined || description3 === "" ||
-                description4 === undefined || description4 === "") {
+                description3 === undefined || description3 === "" ) {
                 return;
             }
             var customJSON = {
@@ -67,11 +61,9 @@ async function pros_cons2({ slideTitle, slideDesc, myAccountInfo, userEmail, pre
                 "number1": number1 ? number1 : "",
                 "number2": number2 ? number2 : "",
                 "number3": number3 ? number3 : "",
-                "number4": number4 ? number4 : "",
                 "description1": description1 ? description1 : "",
                 "description2": description2 ? description2 : "",
-                "description3": description3 ? description3 : "",
-                "description4": description4 ? description4 : ""
+                "description3": description3 ? description3 : ""
             }
             // Logger.log(result: ${result});
             // Translate the result if not in English
@@ -154,128 +146,114 @@ async function pros_cons2_appScript({ result, firstSlideNumberToStart, wikipedia
         titleStyle.setForegroundColor('#000000')
         titleStyle.setBold(true)
         title.setTop(40)
-        title.setLeft(40)
+        title.setLeft(30)
         title.setWidth(350)
 
-        const circle1 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle1.setWidth(40)
-        circle1.setHeight(40)
-        circle1.setTop(120)
-        circle1.setLeft(87)
-        circle1.getFill().setSolidFill('#ffffff')
-        circle1.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle1.getBorder().setWeight(2);
+        const rectshape1 = slide.insertShape(SlidesApp.ShapeType.RECTANGLE)
+        rectshape1.setWidth(30)
+        rectshape1.setHeight(20)
+        rectshape1.setTop(110)
+        rectshape1.setLeft(30)
+        rectshape1.getBorder().getLineFill().setSolidFill('#2d11ee')
+        rectshape1.getFill().setSolidFill('#2d11ee')
 
-        const circle2 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle2.setWidth(40)
-        circle2.setHeight(40)
-        circle2.setTop(120)
-        circle2.setLeft(255)
-        circle2.getFill().setSolidFill('#ffffff')
-        circle2.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle2.getBorder().setWeight(2);
+        const rectshape2 = slide.insertShape(SlidesApp.ShapeType.RECTANGLE)
+        rectshape2.setWidth(30)
+        rectshape2.setHeight(20)
+        rectshape2.setTop(110)
+        rectshape2.setLeft(250)
+        rectshape2.getBorder().getLineFill().setSolidFill('#2d11ee')
+        rectshape2.getFill().setSolidFill('#2d11ee')
 
-        const circle3 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle3.setWidth(40)
-        circle3.setHeight(40)
-        circle3.setTop(120)
-        circle3.setLeft(420)
-        circle3.getFill().setSolidFill('#ffffff')
-        circle3.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle3.getBorder().setWeight(2);
+        const rectshape3 = slide.insertShape(SlidesApp.ShapeType.RECTANGLE)
+        rectshape3.setWidth(30)
+        rectshape3.setHeight(20)
+        rectshape3.setTop(110)
+        rectshape3.setLeft(480)
+        rectshape3.getBorder().getLineFill().setSolidFill('#2d11ee')
+        rectshape3.getFill().setSolidFill('#2d11ee')
 
-        const circle4 = slide.insertShape(SlidesApp.ShapeType.ELLIPSE)
-        circle4.setWidth(40)
-        circle4.setHeight(40)
-        circle4.setTop(120)
-        circle4.setLeft(580)
-        circle4.getFill().setSolidFill('#ffffff')
-        circle4.getBorder().getLineFill().setSolidFill('#2d11ee')
-        circle4.getBorder().setWeight(2);
 
         const number1 = slide.insertTextBox(result.number1)
         const number1Style = number1.getText().getTextStyle()
-        number1Style.setFontSize(24)
+        number1Style.setFontSize(11)
         number1Style.setFontFamily('Lato')
-        number1Style.setForegroundColor('#2d11ee')
+        number1Style.setForegroundColor('#ffffff')
         number1Style.setBold(true)
-        number1.setTop(118)
-        number1.setLeft(91)
+        number1.setTop(107)
+        number1.setLeft(35)
         number1.setWidth(20)
+
 
         const number2 = slide.insertTextBox(result.number2)
         const number2Style = number2.getText().getTextStyle()
-        number2Style.setFontSize(24)
+        number2Style.setFontSize(11)
         number2Style.setFontFamily('Lato')
-        number2Style.setForegroundColor('#2d11ee')
+        number2Style.setForegroundColor('#ffffff')
         number2Style.setBold(true)
-        number2.setTop(118)
-        number2.setLeft(260)
+        number2.setTop(107)
+        number2.setLeft(255)
         number2.setWidth(20)
+
 
         const number3 = slide.insertTextBox(result.number3)
         const number3Style = number3.getText().getTextStyle()
-        number3Style.setFontSize(24)
+        number3Style.setFontSize(11)
         number3Style.setFontFamily('Lato')
-        number3Style.setForegroundColor('#2d11ee')
+        number3Style.setForegroundColor('#ffffff')
         number3Style.setBold(true)
-        number3.setTop(118)
-        number3.setLeft(425)
+        number3.setTop(107)
+        number3.setLeft(485)
         number3.setWidth(20)
 
-        const number4 = slide.insertTextBox(result.number4)
-        const number4Style = number4.getText().getTextStyle()
-        number4Style.setFontSize(24)
-        number4Style.setFontFamily('Lato')
-        number4Style.setForegroundColor('#2d11ee')
-        number4Style.setBold(true)
-        number4.setTop(118)
-        number4.setLeft(585)
-        number4.setWidth(20)
+        const shape1 = slide.insertShape(SlidesApp.ShapeType.RECTANGLE)
+        shape1.setWidth(200)
+        shape1.setHeight(200)
+        shape1.setTop(130)
+        shape1.setLeft(30)
+        shape1.getBorder().getLineFill().setSolidFill('#2d11ee')
+        shape1.getFill().setSolidFill('#ffffff')
+
+        const shape2 = slide.insertShape(SlidesApp.ShapeType.RECTANGLE)
+        shape2.setWidth(200)
+        shape2.setHeight(200)
+        shape2.setTop(130)
+        shape2.setLeft(250)
+        shape2.getBorder().getLineFill().setSolidFill('#2d11ee')
+        shape2.getFill().setSolidFill('#ffffff')
+
+        const shape3 = slide.insertShape(SlidesApp.ShapeType.RECTANGLE)
+        shape3.setWidth(200)
+        shape3.setHeight(200)
+        shape3.setTop(130)
+        shape3.setLeft(480)
+        shape3.getBorder().getLineFill().setSolidFill('#2d11ee')
+        shape3.getFill().setSolidFill('#ffffff')
+
 
         const info1 = slide.insertTextBox(result.description1)
         const info1Style = info1.getText().getTextStyle()
         info1Style.setFontSize(11)
         info1Style.setFontFamily('Lato')
-        const info1Range = info1.getText();
-        const info1paragraphStyle = info1Range.getParagraphStyle();
-        info1paragraphStyle.setParagraphAlignment(SlidesApp.ParagraphAlignment.CENTER);
-        info1.setTop(180)
-        info1.setLeft(40)
-        info1.setWidth(130)
+        info1.setTop(150)
+        info1.setLeft(35)
+        info1.setWidth(180)
 
         const info2 = slide.insertTextBox(result.description2)
         const info2Style = info2.getText().getTextStyle()
         info2Style.setFontSize(11)
         info2Style.setFontFamily('Lato')
-        const info2Range = info2.getText();
-        const info2paragraphStyle = info2Range.getParagraphStyle();
-        info2paragraphStyle.setParagraphAlignment(SlidesApp.ParagraphAlignment.CENTER);
-        info2.setTop(180)
-        info2.setLeft(205)
-        info2.setWidth(130)
+        info2.setTop(150)
+        info2.setLeft(255)
+        info2.setWidth(180)
 
         const info3 = slide.insertTextBox(result.description3)
         const info3Style = info3.getText().getTextStyle()
         info3Style.setFontSize(11)
         info3Style.setFontFamily('Lato')
-        const info3Range = info3.getText();
-        const info3paragraphStyle = info3Range.getParagraphStyle();
-        info3paragraphStyle.setParagraphAlignment(SlidesApp.ParagraphAlignment.CENTER);
-        info3.setTop(180)
-        info3.setLeft(375)
-        info3.setWidth(130)
-
-        const info4 = slide.insertTextBox(result.description4)
-        const info4Style = info4.getText().getTextStyle()
-        info4Style.setFontSize(11)
-        info4Style.setFontFamily('Lato')
-        const info4Range = info4.getText();
-        const info4paragraphStyle = info4Range.getParagraphStyle();
-        info4paragraphStyle.setParagraphAlignment(SlidesApp.ParagraphAlignment.CENTER);
-        info4.setTop(180)
-        info4.setLeft(535)
-        info4.setWidth(130)
+        info3.setTop(150)
+        info3.setLeft(485)
+        info3.setWidth(180)
 
         // *********************************************************************************************************
         // *********************************************************************************************************

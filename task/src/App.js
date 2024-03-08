@@ -1,17 +1,15 @@
-import { Route,Routes } from "react-router-dom";
-<<<<<<< Updated upstream
-import PresentationComponent from "./Day9_19_Feb/Mainpage";
-=======
-import PresentationComponent from "./Component/Main";
->>>>>>> Stashed changes
-// import PresentationComponent from "./Day7_16_Feb/Mainpage";
-// import PresentationComponent from "./Day8_17_Feb/MainSlide";
+import logo from './logo.svg';
+import './App.css';
+// import PresentationComponent from './Images6/Mainpage';
+import { Route,Routes } from 'react-router-dom';
+import PresentationComponent from './Quizslides/Mainpage';
+
 function App() {
   return (
-    <div>
+    <div className="App">
       <Routes>
-        {/* <Route path="/" element={<PresentationComponent/>}/> */}
-        <Route path="/" element={<PresentationComponent/>}/>
+        {/* <Route path='/' element={<PresentationComponent/>} /> */}
+        <Route path='/' element={<PresentationComponent/>} /> 
       </Routes>
     </div>
   );
